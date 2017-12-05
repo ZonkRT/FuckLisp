@@ -1,9 +1,16 @@
-(defparameter tree (make-hash-table))(defun family()
-(defun split-space(string)
-  (loop for i = 0 then (1+j)
-        as j = (position #\Space string :start i)
-        collect subseq string i j)
-  while j))
+(defparameter tree (make-hash-table))
+
+(defun split-str (string &optional (separator " "))
+  (split-str-1 string separator))
+
+(defun split-str-1 (string &optional (separator " ") (r nil))
+  (let ((n (position separator string
+		     :from-end t
+		     :test #'(lambda (x y)
+			       (find y x :test #'string=)))))
+    (if n
+	(split-str-1 (subseq string 0 n) separator (cons (subseq string (1+ n)) r))
+      (cons string r))))
 
 (defstruct person
 	name 
@@ -13,7 +20,7 @@
   (when in
     (loop for line = (read-line in nil)
           while line do (
-                         (defparamater list (split-space line))
+                         (defparamater list (split-str line))
                          (if (eq (FIRST(list)) 'e)
                              (if = length(list) 4
                                (if eq (gethash (SECOND(list)) tree) nil 
@@ -26,6 +33,6 @@
 
                                (if eq (gethash (FOURTH(list)) tree) nil
                                  (setf p3 (make-person :name FOURTH(list)
-						                                           :parents cons(SECOND(list) THIRD(list))))
+						       :parents cons(SECOND(list) THIRD(list))))
                                  (setf (gethash (FOURTH(list)) tree) p3)
 )))))))
