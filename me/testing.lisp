@@ -1,15 +1,12 @@
-(defstruct person name parents) ;Maybe
-
-(defun setparent(p)
-   (when(person-parents p)
-     (append(person-parents p))))
+(defstruct person name parents)
 
 (defun sibling(p q)
-  (when(=(person-parents p)(person-parents q)) ;maybe, lisp logic is weird
+  (when(=(person-parents p)(person-parents q))
     (append(person-name q))))
 
 (defun half-sibling(p q)
-  (when(;exclusive or, possibly
+  (when(/=((=(first(person-parents p))(first(person-parents q)))(=(second(person-parents p))(second(person-parents q)))))
+    (append(person-name q))))
 
 (defun ancestors(p)
   (when(person-parents p)
