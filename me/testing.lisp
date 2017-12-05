@@ -11,7 +11,7 @@
 (defun half-sibling(p q)
   (when(;exclusive or, possibly
 
-(defun ancestor(p)
+(defun ancestors(p)
   (when(person-parents p)
     (append(person-parents p)
       (ancestors(first(person-parents p)))
