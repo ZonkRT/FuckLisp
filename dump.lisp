@@ -44,8 +44,6 @@
 
 ;Nick
 
-(defstruct person name parents)
-
 (defun sibling(p q)
   (when(=(person-parents p)(person-parents q))
     (append(person-name q))))
