@@ -2,6 +2,10 @@
   (name)
   (parents))
 
+(defun sibling(p, q)
+  (when(=(person-parents p)(person-parents q)) ;maybe, lisp logic is weird
+    (append(person-name q))))
+
 
 
 (defun ancestor(p)
