@@ -1,1 +1,35 @@
+(defparameter tree (make-hash-table))(defun family()
+(defun split-space(string)
+  (loop for i = 0 then (1+j)
+        as j = (position #\Space string :start i)
+        collect subseq string i j)
+  while j))
 
+(defclass person ()
+  (name
+   parent))
+
+(let ((in (open "location" :if-does-not-exist nil)))
+  (when in
+    (loop for line = (read-line in nil)
+          while line do (
+                         (defparamater list (split-space line))
+                         (if (eq (FIRST(list)) 'e)
+                             (if = length(list) 4
+                               (if eq (gethash (SECOND(list)) tree) nil 
+                                 (defparameter p1 (make-instance 'person))
+                                 (setf (slot-value p1 'name) (SECOND(list)))
+                                 (setf (gethash (SECOND(list)) tree) p1))
+                                  
+                               (if eq (gethash (THIRD(list)) tree) nil
+                                 (defparameter p2 (make-instance 'person))
+                                 (setf (slot-value p2 'name) (THIRD(list)))
+                                 (setf (gethash (THIRD(list)) tree) p2)
+)
+                               (if eq (gethash (FOURTH(list)) tree) nil
+                                 (defparameter p3 (make-instance 'person))
+                                 (setf (slot-value p3 'name) FOURTH(list))
+                                 (setf (slot-value p3 'parent) p1)
+                                 (setf (push p2 (slot-value p3 'parent))) 
+                                 (setf (gethash (FOURTH(list)) tree) p3)
+)))))))
