@@ -13,26 +13,29 @@
       (cons string r))))
 
 (defstruct person
-	name 
-	(parents (:type (:list))))
+	(name nil) 
+	(parents nil :type list))
 
-(let ((in (open "location" :if-does-not-exist nil)))
+(let ((in (open "C:\Users\Eunji\Downloads\testfile.txt" :if-does-not-exist nil)))
   (when in
     (loop for line = (read-line in nil)
           while line do (
-                         (defparamater list (split-str line))
-                         (if (eq (FIRST(list)) 'e)
-                             (if = length(list) 4
-                               (if eq (gethash (SECOND(list)) tree) nil 
-                                 (setf p1 (make-person :name SECOND(list)))
-                                 (setf (gethash (SECOND(list)) tree) p1))
+                         (defparamater words (split-str line))
+                         (if (eq (FIRST(words)) 'e)
+                             (if = length(words) 4
+                               (if eq (gethash (SECOND(words)) tree) nil 
+                                 (setf p1 (make-person :name SECOND(words)))
+                                 (setf (gethash (SECOND(words)) tree) p1))
                                   
-                               (if eq (gethash (THIRD(list)) tree) nil
-                                 (setf p2 (make-person :name THIRD(list)))
-                                 (setf (gethash (THIRD(list)) tree) p2))
+                               (if eq (gethash (THIRD(words)) tree) nil
+                                 (setf p2 (make-person :name THIRD(words)))
+                                 (setf (gethash (THIRD(words)) tree) p2))
 
-                               (if eq (gethash (FOURTH(list)) tree) nil
-                                 (setf p3 (make-person :name FOURTH(list)
-						       :parents cons(SECOND(list) THIRD(list))))
-                                 (setf (gethash (FOURTH(list)) tree) p3)
-)))))))
+                               (if eq (gethash (FOURTH(words)) tree) nil
+                                 (setf p3 (make-person :name FOURTH(words)
+						       :parents (list SECOND(words) THIRD(words))))
+                                 (setf (gethash (FOURTH(words)) tree) p3))
+                               (print p1)
+                               (print p2)
+                               (print p3)
+))))))
