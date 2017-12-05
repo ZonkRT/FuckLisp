@@ -75,7 +75,7 @@
 		(when (= n p2-name) (setq bool2 t)))
 	(dolist (n2 'l2)
 		(when (= n2 p1-name) (setq bool2 t)))
-	(when (and (not (not bool)) (not (not bool2)) (setq bool3 t)))
+	(when (and (not (not bool1)) (not (not bool2)) (setq bool3 t)))
 	(return bool3))
 
 ;End of Ryan
