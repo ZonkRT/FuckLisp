@@ -2,7 +2,7 @@
 	(setq l1 '(ancestor(p1)))
 	(setq l2 '(ancestor(p2)))
 	(setq bool1 nil) ;;The three boolean values: common, direct, result
-	(setq bool2 nil) ;;not sure how to do boolean so using just 1 and 0
+	(setq bool2 nil) 
 	(setq bool3 nil)
 	(dolist (name1 'l1)
 		(dolist (name2 'l2)
