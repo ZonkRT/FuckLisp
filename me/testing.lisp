@@ -1,6 +1,6 @@
 (defstruct person name parents) ;Maybe
 
-(defun parent(p)
+(defun setparent(p)
    (when(person-parents p)
      (append(person-parents p))))
 
@@ -9,7 +9,7 @@
     (append(person-name q))))
 
 (defun half-sibling(p q)
-  (when(
+  (when(;exclusive or, possibly
 
 (defun ancestor(p)
   (when(person-parents p)
