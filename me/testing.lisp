@@ -1,6 +1,4 @@
-(defstruct person()
-  (name)
-  (parents))
+(defstruct person name parents) ;Maybe
 
 (defun parent(p)
    (when(person-parents p)
