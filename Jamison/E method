@@ -5,17 +5,11 @@
 (defun family() 
   (setf line (read-line *standard-input*)))
 
-(defun split-str (string &optional (separator " "))
-  (split-str-1 string separator))
-
-(defun split-str-1 (string &optional (separator " ") (r nil))
-  (let ((n (position separator string
-		     :from-end t
-		     :test #'(lambda (x y)
-			       (find y x :test #'string=)))))
-    (if n
-	(split-str-1 (subseq string 0 n) separator (cons (subseq string (1+ n)) r))
-      (cons string r))))
+(defun split-str (string)
+    (loop for i = 0 then (1+ j)
+          as j = (position #\Space string :start i)
+          collect (subseq string i j)
+          while j))
 
 (defstruct person
 	(name nil) 
