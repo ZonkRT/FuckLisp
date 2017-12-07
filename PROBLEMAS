@@ -1,6 +1,6 @@
 Syntax: Need to check
 
-CL-USER 7 > (let ((*STANDARD-INPUT* (open "testfile.txt"))) (family))
+CL-USER 7 > (let ((*STANDARD-INPUT* (open "testfile.txt"))) (family)) ; full path name
 
 Error: The file #P"C:/windows/System32/testfile.txt" does not exist.
   1 (continue) Try opening "testfile.txt" again.
