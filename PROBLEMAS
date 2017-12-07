@@ -1,0 +1,8 @@
+CL-USER 7 > (let ((*STANDARD-INPUT* (open "testfile.txt"))) (family))
+
+Error: The file #P"C:/windows/System32/testfile.txt" does not exist.
+  1 (continue) Try opening "testfile.txt" again.
+  2 (abort) Return to level 0.
+  3 Return to top loop level 0.
+  
+  Why is file not find hello? america???
