@@ -11,7 +11,6 @@
 		(if (sibling (gethash (SECOND words) tree) (gethash (FOURTH words) tree)) 
 			(write 'Yes) (write 'No)))
 		
-	;need way to get person from name, run through whole tree?
 	(when (eq (THIRD words) 'half-sibling)
 		(if (half-sibling (gethash (SECOND words) tree) (gethash (FOURTH words) tree)) 
 			(write 'Yes) (write 'No)))
