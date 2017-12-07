@@ -22,7 +22,7 @@
 	(parents nil :type list))
 
 (write "before loop")
-(let ((*STANDARD-INPUT*(open "testfile.txt"))) (family))
+(let ((*STANDARD-INPUT* (open "testfile.txt"))) (family))
 (write "read file")
   (when in
     (write "before reading lines")
@@ -30,20 +30,20 @@
           while line do (
                          (write "inside loop")
                          (defparamater words (split-str line))
-                         (if (eq (FIRST(words)) 'e)
-                             (if = length(words) 4
-                               (if eq (gethash (SECOND(words)) tree) nil 
-                                 (setf p1 (make-person :name SECOND(words)))
-                                 (setf (gethash (SECOND(words)) tree) p1))
+                         (if (eq (FIRST (words)) 'e)
+                             (if = length (words) 4
+                               (if eq (gethash (SECOND (words)) tree) nil 
+                                 (setf p1 (make-person :name SECOND (words)))
+                                 (setf (gethash (SECOND (words)) tree) p1))
                                   
-                               (if eq (gethash (THIRD(words)) tree) nil
-                                 (setf p2 (make-person :name THIRD(words)))
-                                 (setf (gethash (THIRD(words)) tree) p2))
+                               (if eq (gethash (THIRD (words)) tree) nil
+                                 (setf p2 (make-person :name THIRD (words)))
+                                 (setf (gethash (THIRD (words)) tree) p2))
 
-                               (if eq (gethash (FOURTH(words)) tree) nil
-                                 (setf p3 (make-person :name FOURTH(words)
-						       :parents (list SECOND(words) THIRD(words))))
-                                 (setf (gethash (FOURTH(words)) tree) p3))
+                               (if eq (gethash (FOURTH (words)) tree) nil
+                                 (setf p3 (make-person :name FOURTH (words)
+						       :parents (list SECOND (words) THIRD (words))))
+                                 (setf (gethash (FOURTH (words)) tree) p3))
                                (print p1)
                                (print p2)
                                (print p3)
