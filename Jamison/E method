@@ -1,4 +1,9 @@
+;;;;-*- Mode: Commom-Lisp -*-
+
 (defparameter tree (make-hash-table))
+
+(defun family() 
+  (setf line (read-line *standard-input*)))
 
 (defun split-str (string &optional (separator " "))
   (split-str-1 string separator))
@@ -16,10 +21,14 @@
 	(name nil) 
 	(parents nil :type list))
 
-(let ((in (open "C:\Users\Eunji\Downloads\testfile.txt" :if-does-not-exist nil)))
+(write "before loop")
+(let ((*STANDARD-INPUT*(open "testfile.txt"))) (family))
+(write "read file")
   (when in
+    (write "before reading lines")
     (loop for line = (read-line in nil)
           while line do (
+                         (write "inside loop")
                          (defparamater words (split-str line))
                          (if (eq (FIRST(words)) 'e)
                              (if = length(words) 4
