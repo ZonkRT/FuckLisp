@@ -8,12 +8,12 @@
 			(write 'Yes) (write 'No)))
 	
 	(when (eq (THIRD words) 'sibling)
-		(if (sibling (gethash (SECOND words) tree) (gethash (FOURTH(words)) tree)) 
+		(if (sibling (gethash (SECOND words) tree) (gethash (FOURTH words) tree)) 
 			(write 'Yes) (write 'No)))
 		
 	;need way to get person from name, run through whole tree?
 	(when (eq (THIRD words) 'half-sibling)
-		(if (half-sibling (gethash (SECOND words) tree) (gethash (FOURTH(words)) tree)) 
+		(if (half-sibling (gethash (SECOND words) tree) (gethash (FOURTH words) tree)) 
 			(write 'Yes) (write 'No)))
 	
 	(when (eq (THIRD(words) 'ancestor)
@@ -24,7 +24,7 @@
 		(if (not (not flag)) (write 'Yes) (write 'No)))
 	
 	(when (eq (THIRD words) 'cousin)
-		(if (not (not (cousin (gethash (SECOND words) tree) (gethash (FOURTH(words)) tree))))
+		(if (not (not (cousin (gethash (SECOND words) tree) (gethash (FOURTH words) tree))))
 			(write 'Yes) (write 'No)))
 	
 	(when (eq (THIRD words) 'unrelated))
