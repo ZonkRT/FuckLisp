@@ -65,7 +65,8 @@
   (when(person-parents p)
     (append(person-parents p)
       (ancestors(first(person-parents p)))
-      (ancestors(second(person-parents p))))))
+      (ancestors(second(person-parents p)))))
+remove-duplicates (ancestors p) test #'eq))
      
 ;End of Nick
 
