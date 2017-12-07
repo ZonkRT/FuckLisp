@@ -6,7 +6,7 @@
 (defun family() 
   (setf line (read-line *standard-input*)))
 
-(defun split-str (string) ;split-sequence
+(defun split-str (string) ;split-sequence (check handout)
     (loop for i = 0 then (1+ j)
           as j = (position #\Space string :start i)
           collect (subseq string i j)
@@ -50,8 +50,9 @@
 (defun sibling (p q)
   (when (and (subsetp (person-parents p) (person-parents q) :test #'string=)
 	     (subsetp (person-parents q) (person-parents p)); does subsetp take optional argument for equality
-    (append(person-name q)))); what is this doing
-	;test two people are siblings, only need and
+    (append(person-name q)))); what is this doing, need to fgure out
+	;if testing two people are siblings, only need 'and'
+	;
 
 (defun half-sibling (p q)
   (when (or (and (member (first (person-parents p)) (person-parents q))
@@ -94,4 +95,7 @@
 
 ;End of Ryan
 
-;NO PARENTHESIS WITH NE FUNCTHIN
+;NO PARENTHESIS WITH NEW FUNCTION
+;single quotes (') form lists with input instead of evaluating functions by name 
+;read handout
+;
