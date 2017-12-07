@@ -6,7 +6,7 @@
 (defun family() 
   (setf line (read-line *standard-input*)))
 
-(defun split-str (string)
+(defun split-str (string) ;split-sequence
     (loop for i = 0 then (1+ j)
           as j = (position #\Space string :start i)
           collect (subseq string i j)
@@ -17,8 +17,8 @@
 	(parents nil :type list))
 
 (write "before loop")
-(let ((*STANDARD-INPUT* (open "testfile.txt"))) (family))
-(write "read file")
+(let ((*STANDARD-INPUT* (open "testfile.txt"))) (family)) ;in listner not editor 'conversation w/lisp'
+(write "read file");no writes at top of function
   (when in
     (write "before reading lines")
     (loop for line = (read-line in nil)
@@ -47,39 +47,51 @@
 
 ;Nick
 
-(defun sibling(p q)
-  (when(=(person-parents p)(person-parents q))
+(defun sibling (p q)
+  (when (and (subsetp (person-parents p) (person-parents q) :test #'string=)
+	     (subsetp (person-parents q) (person-parents p)); does subsetp take optional argument for equality
+    (append(person-name q)))); what is this doing
+	;test two people are siblings, only need and
+
+(defun half-sibling (p q)
+  (when (or (and (member (first (person-parents p)) (person-parents q))
+		 (not (member (second (person-parents p)) (person-parents q))))
+	    (and (member (second (person-parents p)) (person-parents q))
+		 (not (member (first (person-parents p)) (person-parents q))))))
+	    
+		     (first (person-parents q)))
+	    (=(second(person-parents p))(second(person-parents q)))))
     (append(person-name q))))
 
-(defun half-sibling(p q)
-  (when(/=((=(first(person-parents p))(first(person-parents q)))(=(second(person-parents p))(second(person-parents q)))))
-    (append(person-name q))))
 
-(defun ancestors(p)
-  (when(person-parents p)
-    (append(person-parents p)
-      (ancestors(first(person-parents p)))
-      (ancestors(second(person-parents p)))))
-remove-duplicates (ancestors p) test #'eq))
+(defun ancestors (p)
+  (when (person-parents p)
+    (remove-duplicates (append (person-parents p)
+			       (ancestors (first (person-parents p)))
+			       (ancestors (second (person-parents p))))))
+	:test #'STRING=)))
      
 ;End of Nick
 
 ;Ryan
 
-(defun cousin(p1 p2)
-	(setq l1 '(ancestor(p1)))
-	(setq l2 '(ancestor(p2)))
-	(setq bool1 nil) ;;The three boolean values: common, direct, result
-	(setq bool2 nil) 
-	(setq bool3 nil)
-	(dolist (name1 'l1)
-		(dolist (name2 'l2)
-			(when (= name1 name2) (setq bool1 t))))
-	(dolist (n 'l1)
-		(when (= n p2-name) (setq bool2 t)))
-	(dolist (n2 'l2)
-		(when (= n2 p1-name) (setq bool2 t)))
-	(when (and (not (not bool1)) (not (not bool2)) (setq bool3 t)))
-	(return bool3))
+(defun cousin (p1 p2)
+  (let ((l1 (ancestors p1))
+	(l2 (ancestors p2))
+	(bool1 nil) (bool2 nil)) 
+      (dolist (name1 l1)
+	(dolist (name2 l2)
+	   (when (string= name1 name2) 
+		(setf bool1 t))))
+       (dolist (n l1)
+	  (when (string= n p2-name) 
+	     (setf bool2 t)))
+       (dolist (n2 l2)
+	  (when (string= n2 p1-name) 
+	     (setf bool2 t)))
+       (and (not (not bool1)) 
+	    (not (not bool2)))))
 
 ;End of Ryan
+
+;NO PARENTHESIS WITH NE FUNCTHIN
