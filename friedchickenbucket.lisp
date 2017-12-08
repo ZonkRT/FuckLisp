@@ -21,7 +21,7 @@
   (when in
     (write "before reading lines")
     (loop for line = (read-line in nil)
-        while line do (
+        (while line do (
         (write "inside loop")
             (defparamater words (split-sequence:SPLIT-SEQUENCE #\Space line))
             (if (eq (FIRST (words)) 'e)
