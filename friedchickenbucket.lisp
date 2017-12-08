@@ -3,28 +3,20 @@
 
 (defparameter tree (make-hash-table))
 
-(defun family() 
-  (setf line (read-line *standard-input*)))
-
-(defun split-str (string) ;split-sequence (check handout)
-    (loop for i = 0 then (1+ j)
-          as j = (position #\Space string :start i)
-          collect (subseq string i j)
-          while j))
-
 (defstruct person
 	(name nil) 
 	(parents nil :type list))
 
-(write "before loop")
-(let ((*STANDARD-INPUT* (open "testfile.txt"))) (family)) ;in listner not editor 'conversation w/lisp'
-(write "read file");no writes at top of function
+; listener -->(let ((*STANDARD-INPUT* (open "testfile.txt"))) (family))
+
+(defun family() 
+  (setf line (read-line *standard-input*))
   (when in
     (write "before reading lines")
     (loop for line = (read-line in nil)
           while line do (
                          (write "inside loop")
-                         (defparamater words (split-str line))
+                         (defparamater words (split-sequence:SPLIT-SEQUENCE #\Space line))
                          (if (eq (FIRST (words)) 'e)
                              (if = length (words) 4
                                (if eq (gethash (SECOND (words)) tree) nil 
@@ -42,7 +34,8 @@
                                (print p1)
                                (print p2)
                                (print p3)
-))))))
+)))))))
+
 ;jamie end
 
 ;Nick
