@@ -60,7 +60,7 @@
 				(write 'Yes) (write 'No)))
 	
 		(when (eq (THIRD(words) ancestor)
-			(setf ancList '(gethash (FOURTH words) tree))
+			(setf ancList (gethash (FOURTH words) tree))
 			(setf flag nil)
 			(dolist (pa ancList)
 				(when (eq pa (gethash (SECOND words) tree)) (setf flag t)))
