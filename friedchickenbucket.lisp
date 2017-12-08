@@ -45,32 +45,32 @@
 ))
 			 (if (eq (FIRST words) 'x)
 
-		(when (eq (THIRD words) parent)
+		(when (eq (THIRD words) 'parent)
 			(setf parent (gethash (SECOND words tree)))
 			(setf kid (gethash (FOURTH words tree)))
 			(if (or (eq (first person-parents kid) parent) (second person-parents kid) parent)
 				(write 'Yes) (write 'No)))
 	
-		(when (eq (THIRD words) sibling)
+		(when (eq (THIRD words) 'sibling)
 			(if (sibling (gethash (SECOND words) tree) (gethash (FOURTH words) tree)) 
 				(write 'Yes) (write 'No)))
 		
-		(when (eq (THIRD words) half-sibling)
+		(when (eq (THIRD words) 'half-sibling)
 			(if (half-sibling (gethash (SECOND words) tree) (gethash (FOURTH words) tree)) 
 				(write 'Yes) (write 'No)))
 	
-		(when (eq (THIRD(words) ancestor)
+		(when (eq (THIRD(words) 'ancestor)
 			(setf ancList (gethash (FOURTH words) tree))
 			(setf flag nil)
 			(dolist (pa ancList)
 				(when (eq pa (gethash (SECOND words) tree)) (setf flag t)))
 			(if (not (not flag)) (write 'Yes) (write 'No)))
 	
-		(when (eq (THIRD words) cousin)
+		(when (eq (THIRD words) 'cousin)
 			(if (not (not (cousin (gethash (SECOND words) tree) (gethash (FOURTH words) tree))))
 				(write 'Yes) (write 'No)))
 	
-		(when (eq (THIRD words) unrelated)
+		(when (eq (THIRD words) 'unrelated)
 			(if (not (not (related (gethash (SECOND words) tree) (gethash (FOURTH words) tree))))
 				(write 'No) (write 'Yes)))
 ))))
