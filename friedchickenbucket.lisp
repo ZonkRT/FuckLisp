@@ -7,7 +7,15 @@
 	(name nil) 
 	(parents nil :type list))
 
-; listener -->(let ((*STANDARD-INPUT* (open "testfile.txt"))) (family))
+(defpackage :split-sequence
+  (:use :common-lisp)
+  (:export #:split-sequence
+           #:split-sequence-if
+           #:split-sequence-if-not))
+
+(in-package :split-sequence)
+
+; listener -->(let ((*STANDARD-INPUT* (open "C:\Users\Eunji\Documents\testfile.txt"))) (family))
 
 (defun family() 
   (setf line (read-line *standard-input*))
@@ -34,7 +42,7 @@
                                (print p1)
                                (print p2)
                                (print p3)
-)))))))
+))))))
 
 ;jamie end
 
