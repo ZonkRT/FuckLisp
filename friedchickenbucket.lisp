@@ -91,17 +91,21 @@
 						(dolist p ancestors ((gethash (THIRD (words)) tree))
 							(write person-name p)))
 							
-					(when (eq (THIRD (word) 'cousin))
+					(when (eq (SECOND (word) 'cousin))
 						(setf cousins :type :list)
 						(dolist p tree	
 							(if cousin p (SECOND (words))
-								append(person-name p))))
+								append( cousins (person-name p)))))
+						(dolist p cousins)	
+							(write person-name p)))
 								
-					(when (eq (THIRD (word) 'unrelated))
-						(setf cousin :type :list)
-						(dolist p tree
+					(when (eq (SECOND (word) 'unrelated))
+						(setf unrelatedss :type :list)
+						(dolist p tree	
 							(if unrelated p (SECOND (words))
-								append(person-name p)))))
+								append( unrelatedss (person-name p)))))
+						(dolist p unrelatedss)	
+							(write person-name p))))
 )))))
 
 ;Nick
