@@ -70,7 +70,9 @@
 			(if (not (not (cousin (gethash (SECOND words) tree) (gethash (FOURTH words) tree))))
 				(write 'Yes) (write 'No)))
 	
-		(when (eq (THIRD words) unrelated)))
+		(when (eq (THIRD words) unrelated)
+			(if (not (not (related (gethash (SECOND words) tree) (gethash (FOURTH words) tree))))
+				(write 'No) (write 'Yes)))
 ))))
 
 ;Nick
