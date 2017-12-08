@@ -21,74 +21,74 @@
   (when in
     (write "before reading lines")
     (loop for line = (read-line in nil)
-          while line do (
-                         (write "inside loop")
-                         (defparamater words (split-sequence:SPLIT-SEQUENCE #\Space line))
-                         (if (eq (FIRST (words)) 'e)
-                             (if = length (words) 4
-                               (if eq (gethash (SECOND (words)) tree) nil 
-                                 (setf p1 (make-person :name SECOND (words)))
-                                 (setf (gethash (SECOND (words)) tree) p1))
+        while line do (
+        (write "inside loop")
+            (defparamater words (split-sequence:SPLIT-SEQUENCE #\Space line))
+            (if (eq (FIRST (words)) 'e)
+                (if = length (words) 4
+                    (if eq (gethash (SECOND (words)) tree) nil 
+                        (setf p1 (make-person :name SECOND (words)))
+                        (setf (gethash (SECOND (words)) tree) p1))
                                   
-                               (if eq (gethash (THIRD (words)) tree) nil
-                                 (setf p2 (make-person :name THIRD (words)))
-                                 (setf (gethash (THIRD (words)) tree) p2))
+                    (if eq (gethash (THIRD (words)) tree) nil
+                        (setf p2 (make-person :name THIRD (words)))
+                         (setf (gethash (THIRD (words)) tree) p2))
 
-                               (if eq (gethash (FOURTH (words)) tree) nil
-                                 (setf p3 (make-person :name FOURTH (words)
-						       :parents (list SECOND (words) THIRD (words))))
-                                 (setf (gethash (FOURTH (words)) tree) p3))
-                               (print p1)
-                               (print p2)
-                               (print p3)))
+                    (if eq (gethash (FOURTH (words)) tree) nil
+                        (setf p3 (make-person :name FOURTH (words)
+						                      :parents (list SECOND (words) THIRD (words))))
+                        (setf (gethash (FOURTH (words)) tree) p3))
+                    (print p1)
+                    (print p2)
+                    (print p3)))
 							   
-						 (if (eq (FIRST words) 'x)
-							(if = length(words) 4 
-
-							(when (eq (THIRD words) 'parent)
-								(setf parent (gethash (SECOND words tree)))
-								(setf kid (gethash (FOURTH words tree)))
-									(if (or (eq (first person-parents kid) parent) (second person-parents kid) parent)
-										(write 'Yes) (write 'No)))
+			(if (eq (FIRST words) 'x)
+				(if = length(words) 4 
+					(when (eq (THIRD words) 'parent)
+						(setf parent (gethash (SECOND words tree)))
+						(setf kid (gethash (FOURTH words tree)))
+							(if (or (eq (first person-parents kid) parent) (second person-parents kid) parent)
+								(write 'Yes) (write 'No)))
 	
-							(when (eq (THIRD words) 'sibling)
-								(if (sibling (gethash (SECOND words) tree) (gethash (FOURTH words) tree)) 
-									(write 'Yes) (write 'No)))
+					(when (eq (THIRD words) 'sibling)
+						(if (sibling (gethash (SECOND words) tree) (gethash (FOURTH words) tree)) 
+							(write 'Yes) (write 'No)))
 		
-							(when (eq (THIRD words) 'half-sibling)
-								(if (half-sibling (gethash (SECOND words) tree) (gethash (FOURTH words) tree)) 
-									(write 'Yes) (write 'No)))
+					(when (eq (THIRD words) 'half-sibling)
+						(if (half-sibling (gethash (SECOND words) tree) (gethash (FOURTH words) tree)) 
+							(write 'Yes) (write 'No)))
 	
-							(when (eq (THIRD(words) 'ancestor)
-								(setf ancList (gethash (FOURTH words) tree))
-								(setf flag nil)
-								(dolist (pa ancList)
-								(when (eq pa (gethash (SECOND words) tree)) (setf flag t)))
-									(if (not (not flag)) (write 'Yes) (write 'No))))
+					(when (eq (THIRD(words) 'ancestor)
+						(setf ancList (gethash (FOURTH words) tree))
+						(setf flag nil)
+						(dolist (pa ancList)
+						(when (eq pa (gethash (SECOND words) tree)) (setf flag t)))
+							(if (not (not flag)) (write 'Yes) (write 'No))))
 	
-							(when (eq (THIRD words) 'cousin)
-								(if (not (not (cousin (gethash (SECOND words) tree) (gethash (FOURTH words) tree))))
-									(write 'Yes) (write 'No)))
+					(when (eq (THIRD words) 'cousin)
+						(if (not (not (cousin (gethash (SECOND words) tree) (gethash (FOURTH words) tree))))
+							(write 'Yes) (write 'No)))
 	
-							(when (eq (THIRD words) 'unrelated)
-								(if (not (not (related (gethash (SECOND words) tree) (gethash (FOURTH words) tree))))
-									(write 'No) (write 'Yes)))))   
+					(when (eq (THIRD words) 'unrelated)
+						(if (not (not (related (gethash (SECOND words) tree) (gethash (FOURTH words) tree))))
+							(write 'No) (write 'Yes)))))   
 							   
-						(if (eq (FIRST (words)) 'w)
-							(if = length(words) 3
-							(when (eq (THIRD (word) 'parent))
-								(print person-parents (gethash (SECOND (words)) tree)))
-							(when (eq (THIRD (word) 'sibling))
-								(print siblings))
-							(when (eq (THIRD (word) 'half-sibling))
-								(print half-sibling))
-							(when (eq (THIRD (word) 'ancestor))
-								(print ancestors))
-							(when (eq (THIRD (word) 'cousin))
-								(print cousins))
-							(when (eq (THIRD (word) 'unrelated))
-								(print unrelated))))
+			(if (eq (FIRST (words)) 'w)
+				(if = length(words) 3
+					(when (eq (THIRD (word) 'parent))
+						(print person-parents (gethash (SECOND (words)) tree)))
+					(when (eq (THIRD (word) 'sibling))
+						(print siblings))
+					(when (eq (THIRD (word) 'half-sibling))
+						(print half-sibling))
+					(when (eq (THIRD (word) 'ancestor))
+						(print ancestors))
+					(when (eq (THIRD (word) 'cousin))
+						(print cousins))
+					(when (eq (THIRD (word) 'unrelated))
+						(print unrelated))))
 ))))
+
 
 ;Nick
 
