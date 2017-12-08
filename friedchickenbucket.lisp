@@ -91,7 +91,7 @@
 	  (when (string= n2 p1-name) 
 	     (setf bool2 t)))
        (and (not (not bool1)) 
-	    (not (not bool2)))))
+	    (not bool2))))
 
 ;End of Ryan
 
