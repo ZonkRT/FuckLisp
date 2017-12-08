@@ -75,20 +75,34 @@
 							   
 			(if (eq (FIRST (words)) 'w)
 				(if = length(words) 3
-					(when (eq (THIRD (word) 'parent))
-						(print person-parents (gethash (SECOND (words)) tree)))
-					(when (eq (THIRD (word) 'sibling))
-						(print siblings))
-					(when (eq (THIRD (word) 'half-sibling))
-						(print half-sibling))
-					(when (eq (THIRD (word) 'ancestor))
-						(print ancestors))
+					(when (eq (SECOND (word) 'parent))
+						(dolist (p (person-parents (gethash (THIRD (words)) tree)))	
+							(print person-name p)))
+							
+					(when (eq (SECOND (word) 'sibling))
+						(dolist (p sibling ((gethash (THIRD (words)) tree)))	
+							(print person-name p)))
+							
+					(when (eq (SECOND (word) 'half-sibling))
+						(dolist (p half-sibling ((gethash (THIRD (words)) tree)))	
+							(print person-name p)))
+							
+					(when (eq (SECOND (word) 'ancestor))
+						(dolist (p ancestors ((gethash (THIRD (words)) tree)))	
+							(print person-name p)))
+							
 					(when (eq (THIRD (word) 'cousin))
-						(print cousins))
+						(setf cousins :type :list)
+						(dolist (p tree)	
+							(if cousin p (SECOND (words))
+								append(person-name p))))
+								
 					(when (eq (THIRD (word) 'unrelated))
-						(print unrelated))))
-))))
-
+						(setf cousin :type :list)
+						(dolist (p tree)	
+							(if unrelated p (SECOND (words))
+								append(person-name p)))))
+)))))
 
 ;Nick
 
