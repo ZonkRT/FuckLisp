@@ -61,7 +61,7 @@
 					(when (eq (THIRD(words) 'ancestor)
 						(setf ancList (gethash (FOURTH words) tree))
 						(setf flag nil)
-						(dolist pa ancList
+						(dolist (pa ancList)
 						(when (eq pa (gethash (SECOND words) tree)) (setf flag t)))
 							(if (not (not flag)) (write 'Yes) (write 'No))))
 	
@@ -76,36 +76,36 @@
 			(if (eq (FIRST (words)) 'w)
 				(if = length(words) 3
 					(when (eq (SECOND (word) 'parent))
-						(dolist p (person-parents (gethash (THIRD (words)) tree))	
+						(dolist (p (person-parents (gethash (THIRD (words)) tree)))	
 							(write person-name p)))
 							
 					(when (eq (SECOND (word) 'sibling))
-						(dolist p sibling ((gethash (THIRD (words)) tree))	
+						(dolist (p sibling ((gethash (THIRD (words)) tree)))	
 							(write person-name p)))
 							
 					(when (eq (SECOND (word) 'half-sibling))
-						(dolist p half-sibling ((gethash (THIRD (words)) tree))	
+						(dolist (p half-sibling ((gethash (THIRD (words)) tree)))	
 							(write person-name p)))
 							
 					(when (eq (SECOND (word) 'ancestor))
-						(dolist p ancestors ((gethash (THIRD (words)) tree))
+						(dolist (p ancestors ((gethash (THIRD (words)) tree)))
 							(write person-name p)))
 							
 					(when (eq (SECOND (word) 'cousin))
 						(setf cousins :type :list)
-						(dolist p tree	
+						(dolist (p tree)	
 							(if cousin p (SECOND (words))
-								append( cousins (person-name p)))))
-						(dolist p cousins)	
+								append( cousins (person-name p))))
+						(dolist (p cousins)	
 							(write person-name p)))
 								
 					(when (eq (SECOND (word) 'unrelated))
 						(setf unrelatedss :type :list)
-						(dolist p tree	
+						(dolist (p tree)	
 							(if unrelated p (SECOND (words))
-								append( unrelatedss (person-name p)))))
-						(dolist p unrelatedss)	
-							(write person-name p))))
+								append( unrelatedss (person-name p))))
+						(dolist (p unrelatedss)	
+							(write person-name p)))))
 )))))
 
 ;Nick
