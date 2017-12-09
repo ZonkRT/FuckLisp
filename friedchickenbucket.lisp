@@ -1,4 +1,4 @@
-;;;;-*- Mode: Commom-Lisp -*-
+		    ;;;;-*- Mode: Commom-Lisp -*-
 
 (defparameter tree (make-hash-table))
 
@@ -113,7 +113,7 @@
 (defun sibling (p q)
   (when (and (subsetp (person-parents p) (person-parents q) :test #'string=)
 	     (subsetp (person-parents q) (person-parents p)); does subsetp take optional argument for equality
-    (append(person-name q)))); what is this doing, need to fgure out
+    (append(person-name q))))); what is this doing, need to fgure out
 	;if testing two people are siblings, only need 'and'
 	;
 
@@ -122,7 +122,7 @@
 		 (not (member (second (person-parents p)) (person-parents q))))
 	    (and (member (second (person-parents p)) (person-parents q))
 		 (not (member (first (person-parents p)) (person-parents q))))))
-    (append(person-name q))))
+    (append(person-name q)))
 
 
 (defun ancestors (p)
@@ -130,7 +130,7 @@
     (remove-duplicates (append (person-parents p)
 			       (ancestors (first (person-parents p)))
 			       (ancestors (second (person-parents p))))))
-	:test #'STRING=)))
+	:test #'STRING=)
      
 ;End of Nick
 
@@ -159,3 +159,4 @@
 ;single quotes (') form lists with input instead of evaluating functions by name 
 ;read handout
 ;
+
