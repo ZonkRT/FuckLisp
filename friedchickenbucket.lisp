@@ -122,9 +122,6 @@
 		 (not (member (second (person-parents p)) (person-parents q))))
 	    (and (member (second (person-parents p)) (person-parents q))
 		 (not (member (first (person-parents p)) (person-parents q))))))
-	    
-		     (first (person-parents q)))
-	    (=(second(person-parents p))(second(person-parents q)))))
     (append(person-name q))))
 
 
