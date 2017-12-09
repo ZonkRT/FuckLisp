@@ -51,12 +51,18 @@
 								(write 'Yes) (write 'No)))
 	
 					(when (eq (THIRD words) 'sibling)
-						(if (sibling (gethash (SECOND words) tree) (gethash (FOURTH words) tree)) 
-							(write 'Yes) (write 'No)))
+						(setf sibList (gethash (FOURTH words) tree))
+						(setf flag nil)
+						(dolist (sib sibList)
+							(when (eq sib (gethash (SECOND words) tree)) (set flag t))
+							(if (not (not flag)) (write 'Yes) (write 'No))))
 		
 					(when (eq (THIRD words) 'half-sibling)
-						(if (half-sibling (gethash (SECOND words) tree) (gethash (FOURTH words) tree)) 
-							(write 'Yes) (write 'No)))
+						(setf hsibList (gethash (FOURTH words) tree))
+						(setf flag nil)
+						(dolist (hsib hsibList)
+							(when (eq hsib (gethash (SECOND words) tree)) (set flag t))
+							(if (not (not flag)) (write 'Yes) (write 'No))))
 	
 					(when (eq (THIRD(words) 'ancestor)
 						(setf ancList (gethash (FOURTH words) tree))
