@@ -1,4 +1,4 @@
-		    ;;;;-*- Mode: Commom-Lisp -*-
+;;;;-*- Mode: Commom-Lisp -*-
 
 (defparameter tree (make-hash-table))
 
@@ -51,18 +51,12 @@
 								(write 'Yes) (write 'No)))
 	
 					(when (eq (THIRD words) 'sibling)
-						(setf sibList (gethash (FOURTH words) tree))
-						(setf flag nil)
-						(dolist (sib sibList)
-							(when (eq sib (gethash (SECOND words) tree)) (set flag t))
-							(if (not (not flag)) (write 'Yes) (write 'No))))
+						(if (sibling (gethash (SECOND words) tree) (gethash (FOURTH words) tree)) 
+							(write 'Yes) (write 'No)))
 		
 					(when (eq (THIRD words) 'half-sibling)
-						(setf hsibList (gethash (FOURTH words) tree))
-						(setf flag nil)
-						(dolist (hsib hsibList)
-							(when (eq hsib (gethash (SECOND words) tree)) (set flag t))
-							(if (not (not flag)) (write 'Yes) (write 'No))))
+						(if (half-sibling (gethash (SECOND words) tree) (gethash (FOURTH words) tree)) 
+							(write 'Yes) (write 'No)))
 	
 					(when (eq (THIRD(words) 'ancestor)
 						(setf ancList (gethash (FOURTH words) tree))
@@ -82,19 +76,33 @@
 			(if (eq (FIRST (words)) 'w)
 				(if = length(words) 3
 					(when (eq (SECOND (word) 'parent))
-						(dolist (p (person-parents (gethash (THIRD (words)) tree)))	
+					(setf parents person-parents (gethash (THIRD (words)) tree))
+					(sort parents #'string-lessp)
+						(dolist (p parents)	
 							(write person-name p)))
 							
 					(when (eq (SECOND (word) 'sibling))
-						(dolist (p sibling ((gethash (THIRD (words)) tree)))	
+						(setf siblings :type :list)
+						(dolist (p tree)	
+							(if sibling p (SECOND (words))
+								append( siblings (person-name p))))
+						(sort siblings #'string-lessp)
+						(dolist (p siblings)	
 							(write person-name p)))
 							
 					(when (eq (SECOND (word) 'half-sibling))
-						(dolist (p half-sibling ((gethash (THIRD (words)) tree)))	
+						(setf halfies :type :list)
+						(dolist (p tree)	
+							(if half-sibling p (SECOND (words))
+								append( halfies (person-name p))))
+						(sort halfies #'string-lessp)
+						(dolist (p halfies)	
 							(write person-name p)))
 							
 					(when (eq (SECOND (word) 'ancestor))
-						(dolist (p ancestors ((gethash (THIRD (words)) tree)))
+						(setf alist ancestors ((gethash (THIRD (words)) tree)))
+						(sort alist #'string-lessp)
+						(dolist (p alist)
 							(write person-name p)))
 							
 					(when (eq (SECOND (word) 'cousin))
@@ -102,6 +110,7 @@
 						(dolist (p tree)	
 							(if cousin p (SECOND (words))
 								append( cousins (person-name p))))
+						(sort cousins #'string-lessp)
 						(dolist (p cousins)	
 							(write person-name p)))
 								
@@ -110,10 +119,11 @@
 						(dolist (p tree)	
 							(if unrelated p (SECOND (words))
 								append( unrelatedss (person-name p))))
+						(sort unrelatedss #'string-lessp)
 						(dolist (p unrelatedss)	
 							(write person-name p)))))
 )))))
-
+                                     
 ;Nick
 
 (defun sibling (p q)
