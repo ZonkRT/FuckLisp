@@ -1,3 +1,6 @@
+; listener -->(let ((*STANDARD-INPUT* (open "C:/Users/Eunji/Documents/testfile.txt"))) (family))
+;something is out of bound and something about in
+
 ;;;;-*- Mode: Commom-Lisp -*-
 
 (defparameter tree (make-hash-table))
@@ -13,8 +16,6 @@
            #:split-sequence-if-not))
 
 (in-package :split-sequence)
-
-; listener -->(let ((*STANDARD-INPUT* (open "C:\Users\Eunji\Documents\testfile.txt"))) (family))
 
 (defun family() 
   (setf line (read-line *standard-input*))
@@ -123,6 +124,9 @@
 						(dolist (p unrelatedss)	
 							(write person-name p)))))
 )))))
+                                         
+                                            
+
                                      
 ;Nick
 
