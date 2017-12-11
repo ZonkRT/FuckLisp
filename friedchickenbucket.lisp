@@ -173,6 +173,24 @@
        (and (not (not bool1)) 
 	    (not bool2))))
 
+(defun related (p1 p2)
+  (let ((l1 (ancestors p1))
+		(l2 (ancestors p2))
+		(bool1 nil) (bool2 nil)) 
+      (dolist (name1 l1)
+		(dolist (name2 l2)
+			(when (string= name1 name2) 
+				(setf bool1 t))))
+       (dolist (n l1)
+			(when (string= n p2-name) 
+				(setf bool2 t)))
+       (dolist (n2 l2)
+			(when (string= n2 p1-name) 
+				(setf bool2 t)))
+       (or (or (not (not bool1)) 
+	    (not (not bool2)))
+			(and (not (not bool1)) (not (not bool2))))))
+
 ;End of Ryan
 
 ;NO PARENTHESIS WITH NEW FUNCTION
