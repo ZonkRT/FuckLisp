@@ -29,11 +29,7 @@
                     (if (= (gethash (FOURTH words) tree) nil)
                         (setf p3 (make-person :name FOURTH words)
                                               :parents (list SECOND words THIRD words)))
-                        (setf (gethash (FOURTH words) tree) p3))
-              ;(print p1)
-              ;(print p2)
-              ;(print p3)
-              )
+                        (setf (gethash (FOURTH words) tree) p3)))
 							   
 			(if (STRING= (FIRST words) "X")
 				(if (= (length words) 4) 
