@@ -20,10 +20,10 @@
 (defun family() 
   (setf line (read-line *standard-input*))
   (when in
-    (write "before reading lines")
+ ;   (write "before reading lines")
     (loop for line = (read-line in nil)
-        (while line do (
-        (write "inside loop")
+      do (while line do (
+    ;    (write "inside loop")
             (defparamater words (split-sequence:SPLIT-SEQUENCE #\Space line))
             (if (eq (FIRST (words)) 'e)
                 (if = length (words) 4
