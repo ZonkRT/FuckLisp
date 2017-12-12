@@ -1,28 +1,13 @@
 ; listener -->(let ((*STANDARD-INPUT* (open "C:/Users/Eunji/Documents/testfile.txt"))) (family))
-;something is out of bound and something about in
 
 ;;;;-*- Mode: Commom-Lisp -*-
-
-;Questions:
-;============
-; Odd number of args (setf)
-; :parent is a constant (cannot be modified)
-; person structure
-
-
-
 
 (defparameter tree (make-hash-table))
 
 (defstruct person
 	(name) 
 	(parents))
-
-
-
-
-
-                                     
+                            
 ;Nick
 
 (defun getparents (p)
@@ -87,11 +72,6 @@
 			(and (not (not bool1)) (not (not bool2))))))
 
 ;End of Ryan
-
-;NO PARENTHESIS WITH NEW FUNCTION
-;single quotes (') form lists with input instead of evaluating functions by name 
-;read handout
-;
 
 (defun family ()
   (let ((line nil) (words)) 
