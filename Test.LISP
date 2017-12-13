@@ -1,14 +1,6 @@
 ; listener -->(let ((*STANDARD-INPUT* (open "C:/Users/Nick/Documents/LispFiles/Test Cases/--insertfile-- "))) (family))
-;something is out of bound and something about in
 
 ;;;;-*- Mode: Commom-Lisp -*-
-
-;Questions:
-;============
-; Odd number of args (setf)
-; :parent is a constant (cannot be modified)
-; person structure
-
 
 (defparameter tree (make-hash-table))
 
@@ -81,15 +73,8 @@
 	    (not (not bool2)))
 			(and (not (not bool1)) (not (not bool2))))))
 
-;End of Ryan
-
-;NO PARENTHESIS WITH NEW FUNCTION
-;single quotes (') form lists with input instead of evaluating functions by name 
-;read handout
-;
-
 (defun family ()
-  (let ((line nil) (words nil) (p1 nil) (p2 nil) (p3 nil) (parent nil) (kid nil)) 
+  (let ((line nil) (words nil) (p1 nil) (p2 nil) (p3 nil)) 
      ;check parenthesis
     (loop
      (setf line (read-line *standard-input*))
@@ -100,9 +85,11 @@
               (when (equal (gethash (SECOND words) tree) nil)
                 (setf p1 (make-person :name (SECOND words)))
                 (setf (gethash (SECOND words) tree) p1))
+
               (when (equal (gethash (THIRD words) tree) nil)
                 (setf p2 (make-person :name (THIRD words)))
                 (setf (gethash (THIRD words) tree) p2))
+
               (when (equal (gethash (FOURTH words) tree) nil)
                 (setf p3 (make-person :name (FOURTH words)))
                 (setf p3 (make-person :parents (list (gethash (SECOND words) tree) (gethash (THIRD words) tree))))
@@ -112,13 +99,11 @@
            
            ((STRING= (FIRST words) "X") ;if not in tree, and method not unrelated, say no
             (when (= (length words) 4)
-              (cond ((STRING= (THIRD words) "parent") 
-                     (let ((parent nil) (kid nil))
-                       (setf parent (gethash (SECOND words) tree))
-                       (setf kid (gethash (FOURTH words) tree))
-                       (if (or (STRING= (first (person-parents kid)) (person-name parent))
-                               (STRING= (second (person-parents kid)) (person-name parent)))
-                           (write 'Yes) (write 'No))))
+              (cond ((STRING= (THIRD words) "parent")
+                     (let ((parents nil))
+                           (setf parents (person-parents (gethash (FOURTH words) tree)))
+                           (if (member (gethash (SECOND words) tree) parents) 
+                                    (write 'Yes) (write 'No))))
                     
                     ((STRING= (THIRD words) "sibling")
                      (if (sibling (gethash (SECOND words) tree) (gethash (FOURTH words) tree)) 
@@ -129,12 +114,10 @@
                          (write 'Yes) (write 'No)))
                     
                     ((STRING= (THIRD words) "ancestor")
-                     (let ((ancList nil) (flag nil)) 
-                       (setf ancList (gethash (FOURTH words) tree))
-                       (setf flag nil)
-                       (dolist (pa ancList)
-                         (when (eq pa (gethash (SECOND words) tree)) (setf flag t)));what is compared here
-                       (if (not (not flag)) (write 'Yes) (write 'No))))
+                     (let ((ancList nil))
+                       (setf ancList (ancestors(gethash (FOURTH words) tree)))
+                       (if (member (gethash (SECOND words) tree) ancList)
+                           (write'Yes) (write 'No))))
                     
                     ((STRING= (THIRD words) "cousin")
                      (if (not (not (cousin (gethash (SECOND words) tree) (gethash (FOURTH words) tree))))
@@ -157,7 +140,7 @@
                     ((STRING= (SECOND words) "sibling")
                      (let ((sib nil))                     ;inquiry
                        (dolist (p tree)	
-                         (when (sibling p (SECOND words))
+                         (when (sibling p (THIRD words))
                            (append sib (list (person-name p)))))
                        (sort sib #'string-lessp)
                        (dolist (p sib)	
@@ -166,7 +149,7 @@
                     ((STRING= (SECOND words) "half-sibling")
                      (let ((halfies nil))
                        (dolist (p tree)	
-                         (when (half-sibling p (SECOND words))
+                         (when (half-sibling p (THIRD words))
                            (append halfies (list (person-name p)))))
                        (sort halfies #'string-lessp)
                        (dolist (p halfies)	
@@ -182,7 +165,7 @@
                     ((STRING= (SECOND words) "cousin")
                      (let ((cousins nil))                       ;inquiry
                        (dolist (p tree)	
-                         (when (cousin p (SECOND words))
+                         (when (cousin p (THIRD words))
                            (append cousins (list (person-name p)))))
                        (sort cousins #'string-lessp)
                        (dolist (p cousins)	
@@ -191,7 +174,7 @@
                     ((STRING= (SECOND words) "unrelated")
                      (let ((unrelatedss nil))                  ;inquiry
                        (dolist (p tree)	
-                         (when (related p (SECOND words))
+                         (when (related p (THIRD words))
                            (append unrelatedss (list (person-name p)))))
                        (sort unrelatedss #'string-lessp)
                        (dolist (p unrelatedss)	
