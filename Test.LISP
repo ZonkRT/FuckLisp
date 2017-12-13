@@ -91,11 +91,9 @@
                 (setf (gethash (THIRD words) tree) p2))
 
               (when (equal (gethash (FOURTH words) tree) nil)
-                (write "making kid")
                 (setf p3 (make-person :name (FOURTH words)
                                       :parents (list (gethash (SECOND words) tree) (gethash (THIRD words) tree))))
-                (write (gethash (FOURTH words) tree))
-)))
+                (setf (gethash (FOURTH words) tree) p3))))
            
            
            
