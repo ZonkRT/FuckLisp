@@ -101,7 +101,7 @@
             (when (= (length words) 4)
               (cond ((STRING= (THIRD words) "parent")
                      (let ((parents nil))
-                           (setf parents (person-parents (gethash (FOURTH words) tree)))
+                           (setf parents (getparents (FOURTH words)))
                            (if (member (gethash (SECOND words) tree) parents) 
                                     (write 'Yes) (write 'No))))
                     
@@ -135,7 +135,7 @@
                        (setf parents (getparents (THIRD words)))
                        (sort parents #'string-lessp)
                        (dolist (p parents)	
-                         (print (person-name p)))))
+                         (FORMAT t "~A~%" (person-name p)))))
                     
                     ((STRING= (SECOND words) "sibling")
                      (let ((sib nil))                     ;inquiry
@@ -144,7 +144,7 @@
                            (append sib (list (person-name p)))))
                        (sort sib #'string-lessp)
                        (dolist (p sib)	
-                         (print p))))
+                         (FORMAT t "~A~%" p))))
                      
                     ((STRING= (SECOND words) "half-sibling")
                      (let ((halfies nil))
@@ -160,7 +160,7 @@
                        (setf alist (ancestors (gethash (THIRD words) tree)))
                        (sort alist #'string-lessp)
                        (dolist (p alist)
-                         (write (person-name p)))))
+                         (FORMAT t "~A~%" (person-name p)))))
                     
                     ((STRING= (SECOND words) "cousin")
                      (let ((cousins nil))                       ;inquiry
@@ -169,7 +169,7 @@
                            (append cousins (list (person-name p)))))
                        (sort cousins #'string-lessp)
                        (dolist (p cousins)	
-                         (write p))))
+                         (FORMAT t "~A~%" p))))
                     
                     ((STRING= (SECOND words) "unrelated")
                      (let ((unrelatedss nil))                  ;inquiry
@@ -178,4 +178,4 @@
                            (append unrelatedss (list (person-name p)))))
                        (sort unrelatedss #'string-lessp)
                        (dolist (p unrelatedss)	
-                         (write p)))))))))))
+                         (FORMAT t "~A~%" p)))))))))))
