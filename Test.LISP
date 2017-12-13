@@ -1,4 +1,4 @@
-; listener -->(let ((*STANDARD-INPUT* (open "C:/Users/Nick/Documents/LispFiles/Test Cases/--insertfile-- "))) (family))
+; listener -->(let ((*STANDARD-INPUT* (open "C:/Users/Eunji/Downloads/1800_Program1_Test_2017/test1.txt"))) (family))
 
 ;;;;-*- Mode: Commom-Lisp -*-
 
@@ -91,9 +91,11 @@
                 (setf (gethash (THIRD words) tree) p2))
 
               (when (equal (gethash (FOURTH words) tree) nil)
-                (setf p3 (make-person :name (FOURTH words)))
-                (setf p3 (make-person :parents (list (gethash (SECOND words) tree) (gethash (THIRD words) tree))))
-                (setf (gethash (FOURTH words) tree) p3))))
+                (write "making kid")
+                (setf p3 (make-person :name (FOURTH words)
+                                      :parents (list (gethash (SECOND words) tree) (gethash (THIRD words) tree))))
+                (write (gethash (FOURTH words) tree))
+)))
            
            
            
@@ -129,10 +131,13 @@
            
            
            ((STRING= (FIRST words) "W") 
+            (write "in w")
             (when (= (length words) 3)
               (cond ((STRING= (SECOND words) "parent")
+                     (write "in parent")
                      (let ((parents nil))
                        (setf parents (getparents (THIRD words)))
+                       (write parents)
                        (sort parents #'string-lessp)
                        (dolist (p parents)	
                          (FORMAT t "~A~%" (person-name p)))))
